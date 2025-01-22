@@ -1,0 +1,192 @@
+/* home.css */
+
+/* Apply box-sizing border-box to all elements */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for body */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #fff; /* White background */
+    text-align: center;
+}
+
+/* Header styles */
+header {
+    background-color: #10a881;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo img {
+    height: 50px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+nav a i {
+    margin-right: 8px;
+}
+
+nav a:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Main content styles */
+main {
+    padding: 40px 20px;
+}
+
+/* Algorithm Details Section */
+#algorithm-details, #start-visualizing {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#algorithm-details h2, #start-visualizing h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.algorithm-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.algorithm-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 180px;
+    font-size: 1.2rem;
+}
+
+.algorithm-link i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #10a881;
+}
+
+.algorithm-link span {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.algorithm-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* About and Contact Sections */
+#about, #contact {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+}
+
+#about h2, #contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#about p, #contact p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Footer styles */
+footer {
+    background-color: #10a881;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-year {
+    font-weight: bold;
+}
+
+/* Scroll-to-top button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #10a881;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    background-color: #0e8c6d;
+}

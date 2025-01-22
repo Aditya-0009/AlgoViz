@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="../VisualiserLogo.png" type="image/x-icon" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../home.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <title>Selection Sort - Algorithm Details</title>
+
+    <style>
+        /* Container Styling */
+        .algorithm-info-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .algorithm-info-item {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .algorithm-info-item h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .algorithm-info-item p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background-color: #1e1e1e; /* Dark gray background */
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin-top: 20px;
+            flex: 1;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            color: #d4d4d4; /* Light gray text */
+            max-height: 300px; /* Adjust as needed */
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        /* Example Table Styling */
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .example-table th,
+        .example-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .example-table th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .algorithm-info-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Navigation Bar Styling */
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        header h1 a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        header h1 a:hover {
+            text-decoration: underline;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+            color: #2c3e50;
+            background-color: #f0f0f0; /* Light gray background on hover */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow for better readability */
+        }
+
+        /* Navigation Bar Styling */
+        header img {
+            height: 60px;
+            margin-left: 20px;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition for background color and box-shadow */
+            border-radius: 50%; /* Makes the logo circular */
+            padding: 5px; /* Add some padding */
+        }
+
+        /* Hover Effect for Logo */
+        header img:hover {
+            transform: scale(1.1); /* Slight zoom effect on hover */
+            background-color: #ffffff; /* White background on hover */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow for better readability */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        /* Styling for Project Name */
+        .project-name {
+            font-family: 'Raleway', sans-serif; /* Funky and stylish font */
+            font-size: 2.4rem; /* Larger font size */
+            color: #2c3e50; /* Dark color for contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            margin-left: 40px; /* Moves the title slightly to the right */
+            letter-spacing: 2px; /* Adds spacing between letters for a unique look */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-name a {
+            text-decoration: none;
+            color: inherit; /* Inherit color from .project-name */
+        }
+
+        .project-name:hover {
+            transform: scale(1.05); /* Slight zoom on hover for a dynamic effect */
+        }
+
+        /* Make sure to import the font */
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="project-name"><a href="../home.html">Algorithm Visualiser</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../home.html#algorithm-details"><i class="fas fa-info-circle"></i> Details About Algorithms</a></li>
+                    <li><a href="../home.html#start-visualizing"><i class="fas fa-play-circle"></i> Start Visualizing</a></li>
+                    <li><a href="../home.html#about"><i class="fas fa-users"></i> About</a></li>
+                    <li><a href="../home.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+                <a href="../home.html"><img src="../VisualiserLogo.png" alt="Visualiser Logo"></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="algorithm-info" class="content-section">
+            <div class="container">
+                <h2><i class="fas fa-sort-amount-down"></i> Selection Sort</h2>
+                <div class="algorithm-info-content">
+
+                    <!-- Algorithm Code -->
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-code"></i> Algorithm Code</h3>
+                        <label for="language-select">Select Language:</label>
+                        <select id="language-select">
+                            <option value="cpp">C++</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                        </select>
+                        <div class="code-block">
+                            <pre id="code-display">// Selection Sort Implementation in C++
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        int minIndex = i;
+        for (int j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        // Swap arr[i] and arr[minIndex]
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}</pre>
+                        </div>
+                    </div>
+
+                    <!-- Complexity -->
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-tachometer-alt"></i> Complexity</h3>
+                        <p><strong>Time Complexity:</strong></p>
+                        <ul>
+                            <li><strong>Best Case:</strong> O(n) when the array is already sorted.</li>
+                            <li><strong>Average Case:</strong> O(n<sup>2</sup>).</li>
+                            <li><strong>Worst Case:</strong> O(n<sup>2</sup>).</li>
+                        </ul>
+                        <p><strong>Space Complexity:</strong> O(1).</p>
+                    </div>
+
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-info-circle"></i> About Selection Sort</h3>
+                        <p>Selection Sort is a simple comparison-based sorting algorithm. It works by repeatedly finding the minimum element (considering ascending order) from the unsorted part of the array and putting it at the beginning. This process is repeated for every position in the array until the array is sorted.</p>
+                        <p>Despite its simplicity, Selection Sort is not suitable for large datasets as it has a time complexity of O(n<sup>2</sup>), making it inefficient compared to more advanced algorithms like Quick Sort or Merge Sort.</p>
+                    </div>
+                    
+                    <!-- Example -->
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-experiment"></i> Example</h3>
+                        <table class="example-table">
+                            <thead>
+                                <tr>
+                                    <th>Iteration</th>
+                                    <th>Array State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>[5, 2, 9, 1, 5, 6]</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>[1, 2, 9, 5, 5, 6]</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>[1, 2, 5, 5, 9, 6]</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>[1, 2, 5, 5, 6, 9]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

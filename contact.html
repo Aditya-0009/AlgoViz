@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <title>Contact Us</title>
+  <style>
+    /* Additional Styles for Contact Section */
+    #contact {
+      padding: 60px 20px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-horizontal {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-control,
+    textarea {
+      width: 100%;
+      background-color: #f9f9f9;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .form-control:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
+
+    .send-button {
+      background-color: #4caf50;
+      border: none;
+      border-radius: 5px;
+      padding: 12px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .send-button:hover {
+      background-color: #45a049;
+    }
+
+    .contact-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .contact-list li {
+      line-height: 2;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .contact-list i {
+      color: #4caf50;
+      margin-right: 10px;
+    }
+
+    .contact-text a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+
+    .contact-text a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #4caf50;
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #45a049;
+    }
+
+    /* Header styles matching selection_info.html */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1.project-name a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    nav a img {
+      height: 40px;
+    }
+
+    /* Button to scroll to top */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .scroll-to-top:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="project-name"><a href="./home.html">Algorithm Visualiser</a></h1>
+      <nav>
+        <ul>
+          <li><a href="./home.html#algorithm-details"><i class="fas fa-info-circle"></i> Details About Algorithms</a></li>
+          <li><a href="./home.html#start-visualizing"><i class="fas fa-play-circle"></i> Start Visualizing</a></li>
+          <li><a href="./home.html#about"><i class="fas fa-users"></i> About</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <a href="./home.html"><img src="./VisualiserLogo.png" alt="Visualiser Logo"></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="contact">
+      <div class="contact-container">
+        <h1 class="section-header">
+          <i class="fas fa-envelope"></i> Contact Us
+        </h1>
+
+        <div class="contact-wrapper">
+          <!-- Contact Form -->
+          <form class="form-horizontal" role="form" action="https://formspree.io/f/xeqypzdd" method="POST">
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" placeholder="Name" name="name" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" placeholder="Email" name="email" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="6" placeholder="Message" name="message" autocomplete="off" required></textarea>
+            </div>
+            <button class="send-button" id="submit" type="submit" value="SEND">
+              <i class="fa fa-paper-plane"></i> Send
+            </button>
+          </form>
+          
+          <!-- Contact Information -->
+          <div class="direct-contact-container">
+            <ul class="contact-list">
+              <li><i class="fas fa-map-marker-alt"></i><span class="contact-text"><a href="https://earth.google.com/web/search/Bennett+University,+Greater+Noida,+Uttar+Pradesh/@28.45064516,77.58472879,226.74723183a,949.59171568d,35y,49.62177551h,60t,0r/data=CmsaQRI7CiUweDM5MGNiZjk0ZGViNmJjMzk6MHg3YmE2YmVkYzlhMmI1MzdmKhJCZW5uZXR0IFVuaXZlcnNpdHkYAiABIiYKJAkg_ed9Hjo0QBEg_ed9Hjo0wBk7AjBAVW9JQCE5AjBAVW9JwDoDCgEw" target="_blank" title="Click to view location">Greater Noida, U.P</a></span></li>
+              <li><i class="fas fa-phone"></i><span class="contact-text"><a href="tel:+91-7004230852" title="Give us a call">+91-7004230852</a></span></li>
+              <li><i class="fas fa-envelope"></i><span class="contact-text"><a href="mailto:sentibot007@gmail.com" title="Send us an email">AlgoViz@gmail.com</a></span></li>
+            </ul>
+          </div>
+
+          <!-- Social Media Icons -->
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Created/Developed By <span class="footer-year">Aditya</span></p>
+    </div>
+  </footer>
+
+  <button class="scroll-to-top">↑</button>
+
+  <script src="./home.js"></script>
+</body>
+</html>

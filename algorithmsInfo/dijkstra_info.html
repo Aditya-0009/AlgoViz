@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="../VisualiserLogo.png" type="image/x-icon" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../home.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <title>Dijkstra's Algorithm - Algorithm Details</title>
+
+    <style>
+        /* Container Styling */
+        .algorithm-info-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .algorithm-info-item {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .algorithm-info-item h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .algorithm-info-item p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Code Block Styling */
+        .code-block {
+            background-color: #1e1e1e; /* Dark gray background */
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin-top: 20px;
+            flex: 1;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            color: #d4d4d4; /* Light gray text */
+            max-height: 300px; /* Adjust as needed */
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        /* Example Table Styling */
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .example-table th,
+        .example-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .example-table th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .algorithm-info-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Navigation Bar Styling */
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        header h1 a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        header h1 a:hover {
+            text-decoration: underline;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+            color: #2c3e50;
+            background-color: #f0f0f0; /* Light gray background on hover */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow for better readability */
+        }
+
+        /* Navigation Bar Styling */
+        header img {
+            height: 60px;
+            margin-left: 20px;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition for background color and box-shadow */
+            border-radius: 50%; /* Makes the logo circular */
+            padding: 5px; /* Add some padding */
+        }
+
+        /* Hover Effect for Logo */
+        header img:hover {
+            transform: scale(1.1); /* Slight zoom effect on hover */
+            background-color: #ffffff; /* White background on hover */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow for better readability */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        /* Styling for Project Name */
+        .project-name {
+            font-family: 'Raleway', sans-serif; /* Funky and stylish font */
+            font-size: 2.4rem; /* Larger font size */
+            color: #2c3e50; /* Dark color for contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            margin-left: 40px; /* Moves the title slightly to the right */
+            letter-spacing: 2px; /* Adds spacing between letters for a unique look */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-name a {
+            text-decoration: none;
+            color: inherit; /* Inherit color from .project-name */
+        }
+
+        .project-name:hover {
+            transform: scale(1.05); /* Slight zoom on hover for a dynamic effect */
+        }
+
+        /* Make sure to import the font */
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="project-name"><a href="../home.html">Algorithm Visualiser</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../home.html#algorithm-details"><i class="fas fa-info-circle"></i> Details About Algorithms</a></li>
+                    <li><a href="../home.html#start-visualizing"><i class="fas fa-play-circle"></i> Start Visualizing</a></li>
+                    <li><a href="../home.html#about"><i class="fas fa-users"></i> About</a></li>
+                    <li><a href="../home.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+                <a href="../home.html"><img src="../VisualiserLogo.png" alt="Visualiser Logo"></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="algorithm-info" class="content-section">
+            <div class="container">
+                <h2><i class="fas fa-route"></i> Dijkstra's Algorithm</h2>
+                <div class="algorithm-info-content">
+
+                    <!-- Algorithm Code -->
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-code"></i> Algorithm Code</h3>
+                        <label for="language-select">Select Language:</label>
+                        <select id="language-select">
+                            <option value="cpp">C++</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                        </select>
+                        <div class="code-block">
+                            <pre id="code-display">// Dijkstra's Algorithm Implementation in C++
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <queue>
+using namespace std;
+
+void dijkstra(int graph[][4], int src, int V) {
+    vector<int> dist(V, INT_MAX);
+    vector<bool> sptSet(V, false);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
+
+    dist[src] = 0;
+    pq.push({0, src});
+
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        if (sptSet[u]) continue;
+        sptSet[u] = true;
+
+        for (int v = 0; v < V; v++) {
+            if (graph[u][v] && !sptSet[v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]) {
+                dist[v] = dist[u] + graph[u][v];
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    for (int i = 0; i < V; i++) {
+        cout << "Distance from source to node " << i << " is " << dist[i] << endl;
+    }
+}
+
+int main() {
+    int graph[4][4] = { {0, 10, 0, 30},
+                        {10, 0, 50, 0},
+                        {0, 50, 0, 20},
+                        {30, 0, 20, 0} };
+    dijkstra(graph, 0, 4);
+    return 0;
+}
+                            </pre>
+                        </div>
+                    </div>
+
+                    <!-- Explanation Section -->
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-explanation"></i> Explanation</h3>
+                        <p>Dijkstra's Algorithm finds the shortest path between nodes in a graph. It works by maintaining a set of nodes whose shortest distance from the source is known and expanding these nodes iteratively. The main steps are:</p>
+                        <ul>
+                            <li>Initialize distances from the source to all nodes as infinity, except for the source itself (distance is 0).</li>
+                            <li>Use a priority queue to select the node with the smallest known distance and update its neighboring nodes' distances.</li>
+                            <li>Continue the process until all nodes have the shortest distance from the source.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Example Table -->
+                    <div class="algorithm-info-item">
+                        <h3><i class="fas fa-table"></i> Example</h3>
+                        <p>Consider the following graph:</p>
+                        <table class="example-table">
+                            <tr>
+                                <th>Node</th>
+                                <th>Distance</th>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>30</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="../home.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script>
+        // JavaScript to handle language selection for code display
+        document.getElementById('language-select').addEventListener('change', function () {
+            const language = this.value;
+            const codeDisplay = document.getElementById('code-display');
+
+            if (language === 'cpp') {
+                codeDisplay.textContent = `// Dijkstra's Algorithm Implementation in C++
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <queue>
+using namespace std;
+
+void dijkstra(int graph[][4], int src, int V) {
+    vector<int> dist(V, INT_MAX);
+    vector<bool> sptSet(V, false);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
+
+    dist[src] = 0;
+    pq.push({0, src});
+
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        if (sptSet[u]) continue;
+        sptSet[u] = true;
+
+        for (int v = 0; v < V; v++) {
+            if (graph[u][v] && !sptSet[v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]) {
+                dist[v] = dist[u] + graph[u][v];
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    for (int i = 0; i < V; i++) {
+        cout << "Distance from source to node " << i << " is " << dist[i] << endl;
+    }
+}
+
+int main() {
+    int graph[4][4] = { {0, 10, 0, 30},
+                        {10, 0, 50, 0},
+                        {0, 50, 0, 20},
+                        {30, 0, 20, 0} };
+    dijkstra(graph, 0, 4);
+    return 0;
+}`;
+            } else if (language === 'python') {
+                codeDisplay.textContent = `# Dijkstra's Algorithm Implementation in Python
+import heapq
+
+def dijkstra(graph, start):
+    dist = {vertex: float('infinity') for vertex in graph}
+    dist[start] = 0
+    priority_queue = [(0, start)]
+
+    while priority_queue:
+        current_distance, u = heapq.heappop(priority_queue)
+
+        if current_distance > dist[u]:
+            continue
+
+        for neighbor, weight in graph[u].items():
+            distance = current_distance + weight
+
+            if distance < dist[neighbor]:
+                dist[neighbor] = distance
+                heapq.heappush(priority_queue, (distance, neighbor))
+
+    return dist
+
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
+
+distances = dijkstra(graph, 'A')
+print(distances)`;
+            } else if (language === 'java') {
+                codeDisplay.textContent = `// Dijkstra's Algorithm Implementation in Java
+import java.util.*;
+
+public class Dijkstra {
+    public static void dijkstra(int[][] graph, int src) {
+        int V = graph.length;
+        int[] dist = new int[V];
+        boolean[] sptSet = new boolean[V];
+        PriorityQueue<Node> pq = new PriorityQueue<>(V, new Node());
+
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+        pq.add(new Node(src, 0));
+
+        while (!pq.isEmpty()) {
+            int u = pq.poll().node;
+
+            if (sptSet[u]) continue;
+            sptSet[u] = true;
+
+            for (int v = 0; v < V; v++) {
+                if (!sptSet[v] && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE
+                        && dist[u] + graph[u][v] < dist[v]) {
+                    dist[v] = dist[u] + graph[u][v];
+                    pq.add(new Node(v, dist[v]));
+                }
+            }
+        }
+
+        for (int i = 0; i < V; i++) {
+            System.out.println("Distance from source to node " + i + " is " + dist[i]);
+        }
+    }
+
+    static class Node implements Comparator<Node> {
+        public int node;
+        public int cost;
+
+        public Node() {}
+
+        public Node(int node, int cost) {
+            this.node = node;
+            this.cost = cost;
+        }
+
+        @Override
+        public int compare(Node node1, Node node2) {
+            return Integer.compare(node1.cost, node2.cost);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] graph = {
+            {0, 10, 0, 30},
+            {10, 0, 50, 0},
+            {0, 50, 0, 20},
+            {30, 0, 20, 0}
+        };
+        dijkstra(graph, 0);
+    }
+}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
