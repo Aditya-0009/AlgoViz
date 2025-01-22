@@ -50,21 +50,24 @@ The contact page for getting in touch.
 
 ## 🛠️ How to Run Locally
 
-### 1. Clone the repository
+### Clone the repository
 ```bash
 git clone https://github.com/Aditya-0009/AlgoViz.git
+```
 
-🔄 Future Enhancements
+## 🔄 Future Enhancements
 User Accounts: Adding a feature to save user progress.
 Additional Algorithms: More algorithms, such as dynamic programming and searching algorithms, can be added.
 Mobile Support: Improve the user interface for mobile devices.
 Dark Mode: Add a toggle for switching between light and dark themes.
 
-🙏 Support
+## 🙏 Support
 If you encounter any issues, feel free to open an Issue in the GitHub repository, and I’ll get back to you as soon as possible.
 
-👨‍💻 Created By
+## 👨‍💻 Created By
 Aditya Raj
 GitHub: Aditya-0009
 Email: technoadityaraj@gmail.com
+LinkedIN: https://www.linkedin.com/in/aditya-raj-007kj/
+
 
