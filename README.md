@@ -1,6 +1,8 @@
 # Algorithm Visualizer
 
-![Logo](VisualiserLogo.png)  
+# Algorithm Visualizer
+
+<img src="VisualiserLogo.png" width="300"/>  
 **AlgoViz** is a comprehensive, interactive platform to visualize and learn various **data structures** and **algorithms**. It provides a hands-on, engaging experience for understanding core concepts in computer science, such as sorting algorithms, graph algorithms, and more.
 
 ---
@@ -76,6 +78,6 @@ If you encounter any issues, feel free to open an Issue in the GitHub repository
 **Aditya Raj**  
 GitHub: [Aditya-0009](https://github.com/Aditya-0009)  
 Email: [technoadityaraj@gmail.com](mailto:technoadityaraj@gmail.com)  
-LinkedIn: [Aditya Raj LinkedIn](https://www.linkedin.com/in/aditya-raj-007kj/)
+LinkedIn: [Aditya Raj](https://www.linkedin.com/in/aditya-raj-007kj/)
 
 
