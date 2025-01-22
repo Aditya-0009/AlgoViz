@@ -1,9 +1,7 @@
 # Algorithm Visualizer
 
-# Algorithm Visualizer
-
 <img src="VisualiserLogo.png" width="300"/>  
-**AlgoViz** is a comprehensive, interactive platform to visualize and learn various **data structures** and **algorithms**. It provides a hands-on, engaging experience for understanding core concepts in computer science, such as sorting algorithms, graph algorithms, and more.
+<strong>AlgoViz</strong> is a comprehensive, interactive platform to visualize and learn various <strong>data structures</strong> and <strong>algorithms</strong>. It provides a hands-on, engaging experience for understanding core concepts in computer science, such as sorting algorithms, graph algorithms, and more.
 
 ---
 
