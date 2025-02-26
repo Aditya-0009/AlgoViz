@@ -19,7 +19,6 @@
 
 - **HTML5, CSS3, JavaScript**: Core technologies for frontend development.
 - **GSAP**: Smooth animations for algorithm visualizations.
-- **Node.js (Optional)**: For server-side functionalities (if applicable).
 - **Git**: Version control to track changes and collaboration.
 
 ---
